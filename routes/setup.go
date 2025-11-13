@@ -23,4 +23,11 @@ func SetupRoutes(app *fiber.App) {
 	user.Get("/:id", handlers.GetUserByID)
 	user.Put("/update", handlers.UpdateUser)
 	user.Delete("/:id", handlers.DeleteUser)
+
+	alamat := api.Group("/alamat", middlewares.Protected())
+	alamat.Get("/", handlers.GetAlamat)
+	alamat.Post("/", handlers.CreateAlamat)
+	alamat.Get("/:id", handlers.GetAlamatByID)
+	alamat.Put("/:id", handlers.UpdateAlamat)
+	alamat.Delete("/:id", handlers.DeleteAlamat)
 }
