@@ -59,7 +59,7 @@ func UpdateUser(c *fiber.Ctx) error {
 		})
 	}
 
-	// Update field yang dikirim
+	
 	if nama, ok := data["nama"].(string); ok {
 		user.Nama = nama
 	}
@@ -99,5 +99,26 @@ func UpdateUser(c *fiber.Ctx) error {
 	return c.Status(200).JSON(fiber.Map{
 		"message": "Data user berhasil diperbarui",
 		"user":    user,
+	})
+}
+
+func DeleteUser(c *fiber.Ctx) error {
+	id := c.Params("id")
+
+	var user models.User
+	if err := database.DB.First(&user, id).Error; err != nil {
+		return c.Status(404).JSON(fiber.Map{
+			"error": "User tidak ditemukan",
+		})
+	}
+
+	if err := database.DB.Delete(&user).Error; err != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"error": "Gagal menghapus user",
+		})
+	}
+
+	return c.Status(200).JSON(fiber.Map{
+		"message": "User berhasil dihapus",
 	})
 }
