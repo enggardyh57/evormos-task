@@ -14,6 +14,7 @@ type Transaksi struct {
 
 	User   *User   `gorm:"foreignKey:ID_User;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;" json:"user,omitempty"`
 	Alamat *Alamat `gorm:"foreignKey:ID_Alamat;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;" json:"alamat,omitempty"`
+	DetailTrx []DetailTrx `gorm:"foreignKey:IDTrx" json:"detail_trx,omitempty"`
 
 }
 

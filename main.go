@@ -17,7 +17,8 @@ func main() {
 	database.ConnectDB()
 
 	
-	if err := database.DB.AutoMigrate(&models.User{}, &models.Toko{},&models.Alamat{},&models.Kategori{},&models.Produk{},&models.Transaksi{}); err != nil {
+	if err := database.DB.AutoMigrate(&models.User{}, &models.Toko{},&models.Alamat{},&models.Kategori{},&models.Produk{},&models.Transaksi{},&models.LogProduk{},
+		&models.DetailTrx{},); err != nil {
 	log.Fatal("Gagal melakukan migrasi:", err)
 	}
 
