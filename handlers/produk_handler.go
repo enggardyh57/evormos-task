@@ -6,6 +6,7 @@ import (
     "math"
 	"strings"
 	"fmt"
+    "os"
 
 	"github.com/gofiber/fiber/v2"
 	"evormos-task/database"
@@ -129,7 +130,6 @@ func CreateProduk(c *fiber.Ctx) error {
 
     if strings.Contains(contentType, "multipart/form-data") {
 
-        
         produk.NamaProduk = c.FormValue("nama_produk")
         produk.Slug = c.FormValue("slug")
         produk.HargaReseller = c.FormValue("harga_reseller")
@@ -148,13 +148,15 @@ func CreateProduk(c *fiber.Ctx) error {
         produk.CreatedAt = time.Now()
         produk.UpdatedAt = time.Now()
 
-       
         if err := database.DB.Create(&produk).Error; err != nil {
             return c.Status(500).JSON(fiber.Map{
                 "error":  "Gagal menambahkan produk (FormData)",
                 "detail": err.Error(),
             })
         }
+
+       
+        os.MkdirAll("uploads", os.ModePerm)
 
         
         form, err := c.MultipartForm()
@@ -165,9 +167,10 @@ func CreateProduk(c *fiber.Ctx) error {
 
                 filename := fmt.Sprintf("uploads/%d_%s", time.Now().UnixNano(), file.Filename)
 
+                
                 if err := c.SaveFile(file, filename); err == nil {
                     foto := models.Foto_Produk{
-                        ID_Produk:  produk.ID,
+                        ID_Produk: produk.ID,
                         URLFoto:   filename,
                         CreatedAt: time.Now(),
                         UpdatedAt: time.Now(),
@@ -187,6 +190,7 @@ func CreateProduk(c *fiber.Ctx) error {
         "error": "Content-Type tidak dikenali. Gunakan JSON atau Form-Data.",
     })
 }
+
 
 
 
