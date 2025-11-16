@@ -1,4 +1,4 @@
-module evormos-task
+module evermos-task
 
 go 1.25.4
 

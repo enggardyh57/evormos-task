@@ -5,8 +5,8 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
 	"github.com/golang-jwt/jwt/v4"
-	"evormos-task/database"
-	"evormos-task/models"
+	"evermos-task/database"
+	"evermos-task/models"
 )
 
 func Register(c *fiber.Ctx) error {

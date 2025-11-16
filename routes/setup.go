@@ -2,8 +2,8 @@ package routes
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"evormos-task/handlers"
-	"evormos-task/middlewares"
+	"evermos-task/handlers"
+	"evermos-task/middlewares"
 )
 
 func SetupRoutes(app *fiber.App) {

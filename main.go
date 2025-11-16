@@ -4,9 +4,9 @@ import (
 	"log"
 
 	"github.com/gofiber/fiber/v2"
-	"evormos-task/database"
-	"evormos-task/models"
-	"evormos-task/routes"
+	"evermos-task/database"
+	"evermos-task/models"
+	"evermos-task/routes"
 )
 
 func main() {

@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
-	"evormos-task/database"
-	"evormos-task/models"
+	"evermos-task/database"
+	"evermos-task/models"
 )
 
 type ItemInput struct {

@@ -3,8 +3,8 @@ package handlers
 import (
 	"time"
 
-	"evormos-task/database"
-	"evormos-task/models"
+	"evermos-task/database"
+	"evermos-task/models"
 	"github.com/gofiber/fiber/v2"
 )
 
